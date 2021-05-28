@@ -20,7 +20,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', 'Auth\LoginController@logout');
 
+/*
+|--------------------------------------------------------------------------
+| For Contacts
+|--------------------------------------------------------------------------
+*/
 Route::get('/contacts', 'ContactsController@index');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/create/contacts', 'ContactsController@create');
+Route::post('/create/contacts', 'ContactsController@store');

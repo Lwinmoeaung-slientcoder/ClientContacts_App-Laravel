@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactsRequest;
+use App\Contacts;
 
 class ContactsController extends Controller
 {
@@ -13,7 +15,7 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        //
+        return view('Contacts.contactsview');
     }
 
     /**
@@ -21,9 +23,10 @@ class ContactsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        //
+        return view('Contacts.createcontacts');
     }
 
     /**
@@ -32,9 +35,9 @@ class ContactsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactsRequest $request)
     {
-        //
+        return $request ->all();
     }
 
     /**

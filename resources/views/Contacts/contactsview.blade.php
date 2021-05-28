@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title','Dashboard')
+@section('title','contacts')
 
 @section('content')
 
@@ -60,7 +60,6 @@
 
         </div><!-- End Row-->
      </div><!-- End Container-->
- </div><!--End Wrapper -->
-</div><!-- EndColumn-->
-
+ </div><!--End Side Bar Column -->
+</div>  <!--Container Main end-->
 @endsection

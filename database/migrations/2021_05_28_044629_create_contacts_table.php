@@ -19,9 +19,10 @@ class CreateContactsTable extends Migration
             $table->string('email');
             $table->string('company');
             $table->string('position');
-            $table->text('phonenumber');
-            $table->text('image');
-            $table->integer('projectid');
+            $table->integer('phonenumber');
+            $table->integer('phonenumber2');
+            $table->text('file');
+            $table->integer('totalproject');
             $table->timestamps();
         });
     }
