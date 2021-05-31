@@ -27,4 +27,13 @@ Route::get('logout', 'Auth\LoginController@logout');
 */
 Route::get('/contacts', 'ContactsController@index');
 Route::get('/create/contacts', 'ContactsController@create');
+Route::get('/contact/profile/{id}', 'ContactsController@show');
+Route::post('/contact/profile/{id}', 'ContactsController@update');
 Route::post('/create/contacts', 'ContactsController@store');
+
+/*
+|--------------------------------------------------------------------------
+| For Search
+|--------------------------------------------------------------------------
+*/
+Route::get('/search/contacts', 'HomeController@search');

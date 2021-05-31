@@ -18,6 +18,7 @@ class Contacts extends Model
       'phonenumber',
        'phonenumber2' ,
        'file',
+       'totalproject'
      
     ];
 }

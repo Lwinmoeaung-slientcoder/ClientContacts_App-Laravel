@@ -15,7 +15,8 @@ class ContactsController extends Controller
      */
     public function index()
     {
-        return view('Contacts.contactsview');
+        $contacts=Contacts::paginate(8);
+        return view('Contacts.contactsview',compact('contacts'));
     }
 
     /**
@@ -37,7 +38,29 @@ class ContactsController extends Controller
      */
     public function store(ContactsRequest $request)
     {
-        return $request ->all();
+        $file=$request->file('file');
+        $foldername="/Contactimage/";
+        $filename=uniqid().'_'.$file->getClientOriginalName();
+        $file->move(public_path().$foldername,$filename);
+        if($request->get('phonenumber2')==""){
+            $phonenumber2="-";
+        }else{
+            $phonenumber2=$request->get('phonenumber2');
+        }
+        Contacts::create(
+            [
+                'name'          =>$request->get('name'),
+                'email'         =>$request->get('email'),
+                'phonenumber'   =>$request->get('phonenumber'),
+                'phonenumber2'  =>$phonenumber2,
+                'company'       =>$request->get('company'),
+                'position'      =>$request->get('position'),
+                'file'          =>$filename,
+                'totalproject'  =>$request->get('totalproject'),
+            ]
+        );
+        return redirect()->back()->with('status','Sccessfully Inserted');
+      
     }
 
     /**
@@ -48,7 +71,8 @@ class ContactsController extends Controller
      */
     public function show($id)
     {
-        //
+        $profiledata=Contacts::whereId($id)->firstorFail();
+        return view('Contacts.contactprofile', compact('profiledata'));
     }
 
     /**
@@ -69,9 +93,28 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ContactsRequest $request, $id)
     {
-        //
+        $file=$request->file('file');
+        $foldername="/Contactimage/";
+        $filename=uniqid().'_'.$file->getClientOriginalName();
+        $file->move(public_path().$foldername,$filename);
+        if($request->get('phonenumber2')==""){
+            $phonenumber2="-";
+        }else{
+            $phonenumber2=$request->get('phonenumber2');
+        }
+        $profiledata=ProductLists::whereId($id)->firstorFail();
+        $profiledata->name          =$request->get('name');
+        $profiledata->email         =$request->get('email');
+        $profiledata->phonenumber   =$request->get('phonenumber');
+        $profiledata->phonenumber2  =$phonenumber2;
+        $profiledata->company       =$request->get('company');
+        $profiledata->position      =$request->get('position');
+        $profiledata->file          =$filename;
+        $profiledata->totalproject  =$request->get('totalproject');
+        $profiledata->update();
+        return redirect()->back()->with('status','Successfully Updated');
     }
 
     /**
@@ -82,6 +125,8 @@ class ContactsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $result=ProductLists::where('id','=',$id);
+        $result->destory();
+        return redirect()->back()->with('status','Successfully Deleted');
     }
 }

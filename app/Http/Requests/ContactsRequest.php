@@ -26,11 +26,11 @@ class ContactsRequest extends FormRequest
         return [
             'name'=>'required',
             'email'=>'required',
-            'phonenumber'=>'required|digits:9',
-            'phonenumber2'=>'nullable|digits:9',
+            'phonenumber'=>'required|max:11',
+            'phonenumber2'=>'nullable|max:11',
             'position'=>'required',
             'company'=>'required',
-            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg'
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg',
         ];
     }
 }
