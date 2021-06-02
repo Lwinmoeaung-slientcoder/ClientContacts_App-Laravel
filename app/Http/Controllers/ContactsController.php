@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactsRequest;
 use App\Contacts;
+use App\ContactProject;
 
 class ContactsController extends Controller
 {
@@ -19,6 +20,11 @@ class ContactsController extends Controller
         return view('Contacts.contactsview',compact('contacts'));
     }
 
+    public function projectview()
+    {
+        $projects=ContactProject::paginate(8);
+        return view('Contacts.contactsproject',compact('projects'));
+    }
     /**
      * Show the form for creating a new resource.
      *

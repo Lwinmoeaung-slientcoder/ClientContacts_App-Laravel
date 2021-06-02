@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactsRequest;
 use App\Contacts;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -41,5 +42,10 @@ class HomeController extends Controller
     
         // Return the search view with the resluts compacted
         return view('search', compact('posts'));
+    }
+
+    public function useracc(){
+        $users=User::all();
+        return view('auth.userprofile',compact('users'));
     }
 }

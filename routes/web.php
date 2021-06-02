@@ -37,3 +37,18 @@ Route::post('/create/contacts', 'ContactsController@store');
 |--------------------------------------------------------------------------
 */
 Route::get('/search/contacts', 'HomeController@search');
+
+
+/*
+|--------------------------------------------------------------------------
+| For User Accounts Show
+|--------------------------------------------------------------------------
+*/
+Route::get('/user/accounts', 'HomeController@useracc');
+
+/*
+|--------------------------------------------------------------------------
+| For Contact's Project
+|--------------------------------------------------------------------------
+*/
+Route::get('/contacts/project', 'ContactsController@projectview');
