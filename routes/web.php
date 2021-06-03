@@ -44,7 +44,10 @@ Route::get('/search/contacts', 'HomeController@search');
 | For User Accounts Show
 |--------------------------------------------------------------------------
 */
-Route::get('/user/accounts', 'HomeController@useracc');
+Route::get('/user/accounts', 'HomeController@allusersview');
+Route::get('/user/delete/{id}', 'HomeController@userdelete');
+Route::get('/user/update/{id}', 'HomeController@usereditview');
+Route::post('/user/update/{id}', 'HomeController@userupdate');
 
 /*
 |--------------------------------------------------------------------------

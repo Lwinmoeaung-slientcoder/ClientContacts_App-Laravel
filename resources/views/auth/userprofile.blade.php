@@ -4,11 +4,13 @@
 @section('content')
 
     <div class="container-fluid">
-    
+            @if(session('status'))
+                <p class="alert alert-dismissible alert-secondary">{{session('status')}}</p>
+            @endif
             <table class="table">
                 <thead>
                     <tr class="table-secondary">
-                    <th scope="col">#</th>
+                    <th scope="col">User ID</th>
                     <th scope="col">UserName</th>
                     <th scope="col">Email</th>
                     <th scope="col">Password</th>
@@ -27,8 +29,8 @@
                     <td>{{$user->password}}</td>
                     <td>{{$user->role}}</td>
                     <td colspan="2">
-                    <a href="" type="button" class="btn btn-primary">Edit</a>
-                   <a href="" type="button" class="btn btn-primary">Delete</a></td>
+                    <a href="{{ action ('HomeController@usereditview',$user->id)}}" type="button" class="btn btn-primary">Edit</a>
+                   <a href="{{ action ('HomeController@userdelete',$user->id)}}" class="btn btn-primary">Delete</a></td>
                     </tr>
                  @endforeach
                 </tbody>
