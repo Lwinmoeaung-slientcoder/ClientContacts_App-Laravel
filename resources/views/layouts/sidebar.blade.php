@@ -18,7 +18,7 @@
                         <i class='bx bx-user nav_icon'></i> 
                         <span class="nav_name">Users</span> 
                     </a> 
-                    <a href="#" class="nav_link"> 
+                    <a href="/mail" class="nav_link"> 
                         <i class='bx bx-mail-send nav_icon'></i> 
                         <span class="nav_name">Send Mail</span>
                     </a> 

@@ -32,17 +32,13 @@ class HomeController extends Controller
     }
 
     public function search(Request $request){
-        // Get the search value from the request
-        $search = $request->input('search');
-    
+        $search = $request->input('search'); 
         // Search in the title and body columns from the posts table
         $posts = Contacts::query()
-            ->where('name', 'LIKE', "%{$search}%")
-            ->orWhere('company', 'LIKE', "%{$search}%")
-            ->orWhere('position', 'LIKE', "%{$search}%")
-            ->get();
-    
-        // Return the search view with the resluts compacted
+                ->where('name', 'LIKE', "%{$search}%")
+                ->orWhere('company', 'LIKE', "%{$search}%")
+                ->orWhere('position', 'LIKE', "%{$search}%")
+                ->get();
         return view('search', compact('posts'));
     }
 
@@ -68,7 +64,9 @@ class HomeController extends Controller
 
     public function userdelete($id){
         $result=User::where('id','=',$id);
-        $result->destory();
+        $result->delete();
         return redirect()->back()->with('status','Successfully Deleted');
     }
+ 
+ 
 }

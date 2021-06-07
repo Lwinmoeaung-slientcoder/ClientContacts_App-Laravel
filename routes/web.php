@@ -55,3 +55,12 @@ Route::post('/user/update/{id}', 'HomeController@userupdate');
 |--------------------------------------------------------------------------
 */
 Route::get('/contacts/project', 'ContactsController@projectview');
+
+/*
+|--------------------------------------------------------------------------
+| For Send Mail
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/mail', 'MailController@index');
+Route::post('/mail', 'MailController@sendmail')->name('send.email');
