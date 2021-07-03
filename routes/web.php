@@ -20,6 +20,18 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('logout', 'Auth\LoginController@logout');
 
+
+/*
+|--------------------------------------------------------------------------
+| For Dashboard
+|--------------------------------------------------------------------------
+*/
+Route::get('/dashboard',function(){
+
+    return view('dashboard');
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | For Contacts
@@ -28,6 +40,8 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::get('/contacts', 'ContactsController@index');
 Route::get('/create/contacts', 'ContactsController@create');
 Route::get('/contact/profile/{id}', 'ContactsController@show');
+// Route::get('/create/projects', 'ContactsController@create');
+Route::get('/contact/mail/{id}', 'ContactsController@contactmail');
 Route::post('/contact/profile/{id}', 'ContactsController@update');
 Route::post('/create/contacts', 'ContactsController@store');
 
@@ -54,8 +68,12 @@ Route::post('/user/update/{id}', 'HomeController@userupdate');
 | For Contact's Project
 |--------------------------------------------------------------------------
 */
-Route::get('/contacts/project', 'ContactsController@projectview');
-
+Route::get('projects', 'ProjectController@index');
+Route::get('/create/projects', 'ProjectController@createview');
+Route::post('/create/projects', 'ProjectController@create');
+Route::get('/projects/detail/{id}', 'ProjectController@show');
+Route::post('/projects/detail/{id}', 'ProjectController@update');
+Route::get('/projects/pdf/{id}', 'ProjectController@pdf');
 /*
 |--------------------------------------------------------------------------
 | For Send Mail

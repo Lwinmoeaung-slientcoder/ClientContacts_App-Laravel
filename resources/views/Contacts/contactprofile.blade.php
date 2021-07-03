@@ -71,7 +71,9 @@
                             </div>  <!-- End Column two -->
                         </div>
                         <a href="/contacts" class="btn btn-primary">Back</a>
+                        @if(Auth::User()->role=='Manager' || Auth::User()->role=='Staff')
                         <button type="submit" class="btn btn-primary">Update</button>
+                        @endif
                   </fieldset>
             </form>
         </div>

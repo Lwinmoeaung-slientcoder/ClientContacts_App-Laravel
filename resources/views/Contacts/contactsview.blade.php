@@ -20,7 +20,7 @@
                                 </p>
                                 <p  class="card-footer text-center">
                                 <a href="{{ action('ContactsController@show',$contact->id) }}" class="btn btn-outline-primary"><i class='bx bxs-user nav_icon'></i> Profile</a>
-                                <a href="#" class="btn btn-outline-primary ">  <i class='bx bx-envelope nav_icon'></i> Contact</a>
+                                <a href="{{ action('ContactsController@contactmail',$contact->id) }}" class="btn btn-outline-primary ">  <i class='bx bx-envelope nav_icon'></i> Contact</a>
                                 </p>
                             </div><!-- End CardBody-->
                          </div><!-- End Card-->

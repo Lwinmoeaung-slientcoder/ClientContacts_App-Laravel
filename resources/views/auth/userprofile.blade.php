@@ -15,7 +15,9 @@
                     <th scope="col">Email</th>
                     <th scope="col">Password</th>
                     <th scope="col">Role</th>
+                    @if(Auth::User()->role=='Manager' || Auth::User()->role=='Staff')
                     <th scope="col">Actions</th>
+                    @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -28,9 +30,14 @@
                     <td>{{$user->email}}</td>
                     <td>{{$user->password}}</td>
                     <td>{{$user->role}}</td>
+                    @if(Auth::User()->role=='Staff')
+                    <td colspan="2">
+                    <a href="{{ action ('HomeController@usereditview',$user->id)}}" type="button" class="btn btn-primary">Edit</a></td>
+                    @elseif(Auth::User()->role=='Manager' || Auth::User()->role=='Staff')
                     <td colspan="2">
                     <a href="{{ action ('HomeController@usereditview',$user->id)}}" type="button" class="btn btn-primary">Edit</a>
                    <a href="{{ action ('HomeController@userdelete',$user->id)}}" class="btn btn-primary">Delete</a></td>
+                    @endif
                     </tr>
                  @endforeach
                 </tbody>

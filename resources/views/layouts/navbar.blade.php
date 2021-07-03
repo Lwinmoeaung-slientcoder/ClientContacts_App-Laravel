@@ -9,23 +9,23 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-              </li>
+             
+              @if(Auth::User()->role=='Manager' || Auth::User()->role=='Staff')
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Action
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="/create/contacts">Create Contacts</a>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="/create/projects">Create New Project</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Admin Panel</a>
                   </div>
               </li>
+              @endif
                 <li class="nav-item">
                   <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">V.01</a>
                 </li>

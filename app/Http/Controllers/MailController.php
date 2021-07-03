@@ -9,6 +9,7 @@ class MailController extends Controller
 {
 
     public function index(){
+      session()->forget('datavalue');
         return view('mail');
     }
 
@@ -30,12 +31,10 @@ class MailController extends Controller
           Mail::send('email-template', $data, function($message) use ($data) {
             $message->to($data['email'])
             ->subject($data['subject']);
+            $message->from('blackplayerbk@gmail.com', 'LwinMoeAung');
           });
-          if (Mail::failures()) {
-            return redirect()->back()->with(['status' => 'Fail!']);
-          }else{
-            return redirect()->back()->with(['status' => 'Email successfully sent!']);
-          }
+          echo "Email Sent with attachment. Check your inbox.";
+        
        
       }
 }

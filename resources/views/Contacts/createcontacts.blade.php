@@ -6,7 +6,7 @@
       
         <div class="well">
             @if(session('status'))
-                <p class="alert alert alert-dismissible alert-secondary">{{session('status')}}</p>
+                <p class="alert alert-success">{{session('status')}}</p>
             @endif
           
             <form method="POST" enctype="multipart/form-data">

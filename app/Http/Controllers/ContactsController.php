@@ -19,12 +19,6 @@ class ContactsController extends Controller
         $contacts=Contacts::paginate(8);
         return view('Contacts.contactsview',compact('contacts'));
     }
-
-    public function projectview()
-    {
-        $projects=ContactProject::paginate(8);
-        return view('Contacts.contactsproject',compact('projects'));
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -87,9 +81,11 @@ class ContactsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function contactmail($id)
     {
-        //
+        $profiledatas=Contacts::whereId($id)->firstorFail();
+        session()->put('datavalue', 'true');
+        return view('mail', compact('profiledatas'));
     }
 
     /**
@@ -110,7 +106,7 @@ class ContactsController extends Controller
         }else{
             $phonenumber2=$request->get('phonenumber2');
         }
-        $profiledata=ProductLists::whereId($id)->firstorFail();
+        $profiledata=Contacts::whereId($id)->firstorFail();
         $profiledata->name          =$request->get('name');
         $profiledata->email         =$request->get('email');
         $profiledata->phonenumber   =$request->get('phonenumber');
@@ -131,8 +127,8 @@ class ContactsController extends Controller
      */
     public function destroy($id)
     {
-        $result=ProductLists::where('id','=',$id);
-        $result->destory();
+        $result=Contacts::where('id','=',$id);
+        $result->delete();
         return redirect()->back()->with('status','Successfully Deleted');
     }
 }
