@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use App\ContactProject;
+use App\ProjectInfo;
 use App\Contacts;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Auth; 
-use Alert;
 
 class HomeController extends Controller
 {
@@ -63,10 +64,17 @@ class HomeController extends Controller
         return view('auth.userupdate',compact('useracc'));
     }
 
-    public function userdelete($id){
-        $result=User::where('id','=',$id);
+    public function userdelete(Request $request){
+        $userid=$request->get('id');
+        $result=User::where('id','=',$userid);
         $result->delete();
         return redirect()->back()->with('status','Successfully Deleted');
+    }
+
+    public function dashboardtable(){
+        $contactdatalists=Contacts::paginate(8);
+        $projectdatalists=ProjectInfo::paginate(8);
+        return view('dashboard',compact(['contactdatalists','projectdatalists']));
     }
  
  

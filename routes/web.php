@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@dashboardtable')->name('home');
 Route::get('logout', 'Auth\LoginController@logout');
 
 
@@ -26,12 +26,8 @@ Route::get('logout', 'Auth\LoginController@logout');
 | For Dashboard
 |--------------------------------------------------------------------------
 */
-Route::get('/dashboard',function(){
 
-    return view('dashboard');
-});
-
-
+Route::get('/dashboard', 'HomeController@dashboardtable') ;
 /*
 |--------------------------------------------------------------------------
 | For Contacts
@@ -59,7 +55,7 @@ Route::get('/search/contacts', 'HomeController@search');
 |--------------------------------------------------------------------------
 */
 Route::get('/user/accounts', 'HomeController@allusersview');
-Route::get('/user/delete/{id}', 'HomeController@userdelete');
+Route::get('/user/delete/', 'HomeController@userdelete');
 Route::get('/user/update/{id}', 'HomeController@usereditview');
 Route::post('/user/update/{id}', 'HomeController@userupdate');
 
