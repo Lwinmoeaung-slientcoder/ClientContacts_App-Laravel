@@ -60,7 +60,7 @@ class ContactsController extends Controller
             ]
         );
         return redirect()->back()->with('status','Sccessfully Inserted');
-      
+
     }
 
     /**
@@ -98,9 +98,14 @@ class ContactsController extends Controller
     public function update(ContactsRequest $request, $id)
     {
         $file=$request->file('file');
-        $foldername="/Contactimage/";
-        $filename=uniqid().'_'.$file->getClientOriginalName();
-        $file->move(public_path().$foldername,$filename);
+        if(!$file==''){
+            $foldername="/Contactimage/";
+            $filename=uniqid().'_'.$file->getClientOriginalName();
+            $file->move(public_path().$foldername,$filename);
+        }else{
+            $filename='';
+        }
+
         if($request->get('phonenumber2')==""){
             $phonenumber2="-";
         }else{
