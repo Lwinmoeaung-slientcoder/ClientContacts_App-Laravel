@@ -14,7 +14,7 @@
                 @endif
 
 				@if(session()->get('datavalue')=='')
-                <form action="{{ route('send.email') }}" method="post">
+                <form action="/mail" method="post">
                 @csrf
 					<div class="row">
 						<div class="col-sm-6">
@@ -35,7 +35,7 @@
                                 @enderror
 							</div>
 						</div>
-					</div>            
+					</div>
 					<div class="form-group">
 						<label for="inputSubject">Subject</label>
                         <input type="text" name="subject" class="form-control" placeholder="Enter subject">
@@ -45,18 +45,18 @@
 					</div>
 					<div class="form-group">
 						<label for="inputMessage">Message</label>
-                        <textarea name="content" rows="5" class="form-control" placeholder="Enter Your Message"></textarea>
+                        <textarea name="message" rows="5" class="form-control" placeholder="Enter Your Message"></textarea>
                         @error('content')
                         <span class="text-danger"> {{ $message }} </span>
                         @enderror
 					</div>
-					
+                         <a href="/contacts" class="btn btn-primary">Back</a>
 						<button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Send Mail</button>
-				          
+
 				</form>
 				@else
-				
-				<form action="{{ route('send.email') }}" method="post">
+
+				<form action="/mail" method="post">
                 @csrf
 					<div class="row">
 						<div class="col-sm-6">
@@ -77,7 +77,7 @@
                                 @enderror
 							</div>
 						</div>
-					</div>            
+					</div>
 					<div class="form-group">
 						<label for="inputSubject">Subject</label>
                         <input type="text" name="subject" class="form-control" placeholder="Enter subject">
@@ -87,14 +87,14 @@
 					</div>
 					<div class="form-group">
 						<label for="inputMessage">Message</label>
-                        <textarea name="content" rows="5" class="form-control" placeholder="Enter Your Message"></textarea>
+                        <textarea name="message" rows="5" class="form-control" placeholder="Enter Your Message"></textarea>
                         @error('content')
                         <span class="text-danger"> {{ $message }} </span>
                         @enderror
 					</div>
 					<a href="/contacts" class="btn btn-primary">Back</a>
 					<button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Send Mail</button>
-				          
+
 				</form>
 
 
@@ -103,7 +103,7 @@
 		</div>
 	</div>
 </div>
-   
+
 </div><!--End Side Bar Column -->
 </div>  <!--Container Main end-->
 

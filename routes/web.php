@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -76,5 +78,5 @@ Route::get('/projects/pdf/{id}', 'ProjectController@pdf');
 |--------------------------------------------------------------------------
 */
 
-Route::get('/mail', 'MailController@index');
-Route::post('/mail', 'MailController@sendmail')->name('send.email');
+Route::get('/mail', 'MailController@index')->name('mail');
+Route::post('/mail', 'MailController@sendmail');

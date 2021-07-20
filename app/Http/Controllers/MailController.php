@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendingMail;
 use Illuminate\Http\Request;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
@@ -20,21 +21,16 @@ class MailController extends Controller
             'name' => 'required',
             'message' => 'required',
           ]);
-  
+
           $data = [
             'subject' => $request->subject,
             'name' => $request->name,
             'email' => $request->email,
             'message' => $request->message
           ];
-  
-          Mail::send('email-template', $data, function($message) use ($data) {
-            $message->to($data['email'])
-            ->subject($data['subject']);
-            $message->from('blackplayerbk@gmail.com', 'LwinMoeAung');
-          });
-          echo "Email Sent with attachment. Check your inbox.";
-        
-       
+
+        Mail::to($data['email'])->send(new SendingMail($data));
+     return redirect()->route('mail')->with('status','Email Sent Successfully!!!');
+
       }
 }
