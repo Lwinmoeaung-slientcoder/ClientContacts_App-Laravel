@@ -29,8 +29,6 @@ class SendingMail extends Mailable
      */
     public function build()
     {
-
-
         return $this->from($this->data['email'],$this->data['name'])
               ->subject($this->data['subject'])->view('mail-template');
     }
